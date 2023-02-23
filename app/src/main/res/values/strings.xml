@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LoveCalculator</string>
+    <string name="first_name">First name</string>
+    <string name="second_name">Second name</string>
+    <string name="calculate">Calculate</string>
+    <string name="your_score">Your Score</string>
+    <string name="result">result</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="love_calculator">Love Calculator</string>
+</resources>
