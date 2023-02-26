@@ -7,6 +7,6 @@ data class LoveModel (
     var firstName :String,
     @SerializedName("sname")
     var secondName :String,
-    var persentage :String,
+    var percentage :String,
     var result :String
 ):java.io.Serializable

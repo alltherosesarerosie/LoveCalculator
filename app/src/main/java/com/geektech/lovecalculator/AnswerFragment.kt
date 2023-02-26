@@ -24,7 +24,7 @@ class AnswerFragment : Fragment() {
         val ans = arguments?.getSerializable("love") as LoveModel
         binding.fName.text = ans.firstName
         binding.sName.text = ans.secondName
-        binding.result.text = ans.persentage+"%"
+        binding.result.text = ans.percentage+"%"
     }
 
 
