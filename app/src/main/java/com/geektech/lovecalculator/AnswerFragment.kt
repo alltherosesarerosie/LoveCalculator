@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.geektech.lovecalculator.databinding.FragmentAnswerBinding
+import com.geektech.lovecalculator.remote.LoveModel
 
 class AnswerFragment : Fragment() {
     lateinit var binding: FragmentAnswerBinding

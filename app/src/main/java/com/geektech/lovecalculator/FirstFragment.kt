@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.geektech.lovecalculator.databinding.FragmentFirstBinding
-import retrofit2.Call
+import com.geektech.lovecalculator.viewmodel.LoveViewModel
 import retrofit2.Callback
 import retrofit2.Response
 
 class FirstFragment : Fragment() {
     lateinit var binding: FragmentFirstBinding
+    private val viewModel: LoveViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,30 +33,20 @@ class FirstFragment : Fragment() {
     private fun initClicker() {
         with(binding){
             btnCalc.setOnClickListener {
-                LoveService().api.calculatePerc(
-                    firstName = firstEt.text.toString(),
-                    secondName =  secondEt.text.toString()
-                ).enqueue(object : Callback<LoveModel> {
-                    override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
-                        if (response.isSuccessful){
-                            Log.e("astra", "onResponse: ${response.body()}")
-                            val love = response.body()
-                            val b = Bundle()
-                            b.putSerializable("love", love)
-                            val ans = AnswerFragment()
-                            val fragmentTransaction: FragmentTransaction =
-                                activity?.supportFragmentManager?.beginTransaction()!!
-                            ans.arguments = b
-                            fragmentTransaction.addToBackStack(null)
-                            fragmentTransaction.replace(R.id.fragment_container, ans)
-                            fragmentTransaction.commit()
-                        }
-                    }
 
-                    override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-                        Log.e("astra", "${t.message}")
-                    }
-                })
+                viewModel.getLiveLove(firstEt.text.toString(), secondEt.text.toString())
+                    .observe(viewLifecycleOwner, Observer { loveModel ->
+                        Log.e("astra", "onResponse: $loveModel")
+                        val b = Bundle()
+                        b.putSerializable("love", loveModel)
+                        val ans = AnswerFragment()
+                        val fragmentTransaction: FragmentTransaction =
+                            activity?.supportFragmentManager?.beginTransaction()!!
+                        ans.arguments = b
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.replace(R.id.fragment_container, ans)
+                        fragmentTransaction.commit()
+                    })
             }
         }
     }
