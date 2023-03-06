@@ -1,16 +1,24 @@
 package com.geektech.lovecalculator
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.geektech.lovecalculator.databinding.ActivityMainBinding
+import androidx.navigation.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity @Inject constructor(private var pref : SharedPreferences) : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val navController = findNavController(R.id.fragment_container)
 
-        if (savedInstanceState==null){
-            supportFragmentManager.beginTransaction().add(R.id.fragment_container, FirstFragment()).commit()
-        }
+        if (!isUserSeen())
+            navController.navigate(R.id.onBoardingFragment)
+    }
+    private fun isUserSeen(): Boolean {
+        return pref.getBoolean("seen.key", false)
     }
 }
