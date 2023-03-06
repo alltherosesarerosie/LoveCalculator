@@ -21,6 +21,7 @@ class AppModule {
         addConverterFactory(GsonConverterFactory.create()).build().create(LoveApi::class.java)
     }
 
+    @Provides
     fun providesPref(@ApplicationContext context: Context): SharedPreferences {
         return context.getSharedPreferences("Calculator.pref", Context.MODE_PRIVATE)
     }

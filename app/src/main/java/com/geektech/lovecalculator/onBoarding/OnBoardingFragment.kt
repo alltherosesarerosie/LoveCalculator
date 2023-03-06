@@ -9,10 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.geektech.lovecalculator.databinding.FragmentOnBoardingBinding
 import com.geektech.lovecalculator.onBoarding.adapter.AdapterOnBoarding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
-class OnBoardingFragment @Inject constructor(private val pref : SharedPreferences) : Fragment() {
+@AndroidEntryPoint
+class OnBoardingFragment : Fragment() {
+    @Inject
+    lateinit var pref: SharedPreferences
     private lateinit var binding: FragmentOnBoardingBinding
 
     override fun onCreateView(
@@ -25,6 +29,7 @@ class OnBoardingFragment @Inject constructor(private val pref : SharedPreference
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val adapter = AdapterOnBoarding(){
             saveSeen()
             findNavController().navigateUp()
@@ -34,7 +39,11 @@ class OnBoardingFragment @Inject constructor(private val pref : SharedPreference
         adapter.registerAdapterDataObserver(binding.indicator.adapterDataObserver);
     }
     private fun saveSeen() {
-        pref.edit().putBoolean("seen.key", true).apply()
+        pref.edit().putBoolean(SEEN_KEY, true).apply()
+    }
+
+    companion object {
+        const val SEEN_KEY = "seen.key"
     }
 
 }
