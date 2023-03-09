@@ -7,14 +7,15 @@ import com.geektech.lovecalculator.room.AppDatabase
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class App:Application() {
-
-    companion object{
-        lateinit var appDatabase: AppDatabase
-    }
+class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appDatabase = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "love_table"). allowMainThreadQueries().build()
+        appDatabase = Room.databaseBuilder(applicationContext,AppDatabase::class.java, "love_table")
+            .allowMainThreadQueries().build()
+    }
+
+    companion object{
+        lateinit var appDatabase: AppDatabase
     }
 }

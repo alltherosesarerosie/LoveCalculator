@@ -8,7 +8,7 @@ import com.geektech.lovecalculator.remote.LoveModel
 @Dao
 interface LoveDao {
     @Query("SELECT * FROM love_model ORDER BY firstName")
-    fun getByAlphabet(): List<LoveModel>
+    fun sortedByAlphabet(): List<LoveModel>
 
     @Insert
     fun insert(loveModel: LoveModel)

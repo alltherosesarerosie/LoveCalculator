@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FirstFragment : Fragment() {
     private lateinit var binding: FragmentFirstBinding
     private val viewModel: LoveViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,14 +41,14 @@ class FirstFragment : Fragment() {
             btnCalc.setOnClickListener {
                 viewModel.getLiveLove( firstName = firstEt.text.toString(), secondName = secondEt.text.toString())
                     .observe(viewLifecycleOwner, Observer {
-//                        App.appDatabase.loveDao().insert(it)
+                        App.appDatabase.loveDao().insert(it)
                         findNavController().navigate(R.id.answerFragment, bundleOf("love" to it))
                     })
             }
 
-//            btnHistory.setOnClickListener {
-//                findNavController().navigate(R.id.historyFragment)
-//            }
+            btnHistory.setOnClickListener {
+                findNavController().navigate(R.id.historyFragment)
+            }
         }
 
     }

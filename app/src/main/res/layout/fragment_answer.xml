@@ -65,7 +65,7 @@
         android:src="@drawable/ans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="150dp"/>
 
     <TextView
         android:id="@+id/result"
@@ -78,6 +78,22 @@
         app:layout_constraintStart_toStartOf="@+id/ans"
         app:layout_constraintEnd_toEndOf="@id/ans"
         android:layout_marginTop="-20dp"
+        />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/result"
+        app:layout_constraintStart_toStartOf="@+id/ans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ans"
+        android:id="@+id/btn_history"
+        android:layout_width="250dp"
+        android:layout_height="64dp"
+        android:text="@string/history"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/pink"
+        android:textAllCaps="false"
+        android:textStyle="italic"
         />
 
 

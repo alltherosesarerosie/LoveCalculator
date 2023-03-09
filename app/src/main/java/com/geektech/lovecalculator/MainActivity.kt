@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
