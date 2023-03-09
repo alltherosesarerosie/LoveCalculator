@@ -10,6 +10,7 @@ import com.geektech.lovecalculator.databinding.FragmentAnswerBinding
 import com.geektech.lovecalculator.remote.LoveModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("DEPRECATION")
 class AnswerFragment : Fragment() {
     lateinit var binding: FragmentAnswerBinding
     override fun onCreateView(
