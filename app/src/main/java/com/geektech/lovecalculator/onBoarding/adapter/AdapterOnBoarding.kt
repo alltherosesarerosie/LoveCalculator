@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.geektech.lovecalculator.R
 import com.geektech.lovecalculator.databinding.ItemOnBoardingBinding
 import com.geektech.lovecalculator.ext.loadImage
 import com.geektech.lovecalculator.onBoarding.model.OnBoard
 
 class AdapterOnBoarding(private val onClick:()-> Unit) : Adapter<AdapterOnBoarding.OnBoardingViewHolder>() {
     private val data = arrayListOf(
-        OnBoard("Have a good time","You should take a time to help those who need you", "https://cdn-icons-png.flaticon.com/512/682/682388.png"),
-        OnBoard("Cherishing love","It is no longer possible for you to cherish love", "https://cdn-icons-png.flaticon.com/512/769/769633.png"),
-        OnBoard("Have a break up?","We have made the correction for you don't worry. Maybe someone is waiting for you!", "https://cdn-icons-png.flaticon.com/512/769/769633.png")
+        OnBoard("Have a good time","You should take a time to help those who need you", R.raw.writing),
+        OnBoard("Cherishing love","It is no longer possible for you to cherish love", R.raw.time),
+        OnBoard("Have a break up?","We have made the correction for you don't worry. Maybe someone is waiting for you!", R.raw.writing)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {
@@ -33,7 +34,7 @@ class AdapterOnBoarding(private val onClick:()-> Unit) : Adapter<AdapterOnBoardi
             with(binding) {
                 titleTv.text = onBoard.title
                 descTv.text = onBoard.desc
-                imgIv.loadImage(onBoard.img.toString())
+                onBoard.img?.let { binding.lottie.setAnimation(it) }
                 btnStart.isVisible = adapterPosition==data.lastIndex
                 btnStart.setOnClickListener {
                     onClick()
